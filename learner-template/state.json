@@ -16,6 +16,7 @@
   },
   "modules": {},
   "gaps": [],
+  "deferred": [],
   "pace": {
     "read": "unknown",
     "evidence": "",
