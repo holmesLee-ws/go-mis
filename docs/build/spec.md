@@ -78,7 +78,7 @@ go-develop G0(2026-11-08, code.claude.com 문서)의 확인을 재사용한다. 
 - Desktop은 CLI와 같은 설정 파일을 읽고, 프로젝트 스킬이 `/` 메뉴에 나온다. 로컬 세션에서 채팅의 HTML 경로를 클릭하면 Browser 창에서 열린다. Desktop의 CLAUDE.md 로딩과 AskUserQuestion 지원은 문서에 명시가 없다. 그래서 채팅 답을 기본으로 한다.
 - 프로젝트 `permissions.allow`는 신뢰 대화상자를 수락한 뒤에만 적용된다. `Edit(...)`이 쓰기를 포함한다.
 - CLI에는 자동 브라우저 미리보기가 없어 OS의 열기 명령을 쓴다.
-- G2 확인(2026-11-14): 권한 규칙 형식은 code.claude.com 권한 문서와 맞는다(G2 독립 리뷰가 확인). 세션 안 WebFetch로 law.go.kr을 열면 한글 주소(`/법령/<이름>`, `/행정규칙/<이름>`)로 법령명·시행일·공포 번호까지 보인다. 조문 본문은 자바스크립트로 불러와 보이지 않는다(`/제N조` 주소, `lsInfoP.do`도 같음). 공동활용 API(DRF)는 기관 등록이 필요해 학습자 경로에 쓸 수 없다. 그래서 튜터 규칙(tutor/sources.md)은 이렇게 정했다: 명칭·현행 여부는 law.go.kr로 확인한다. 조문 내용은 공식 해설 페이지에서 확인하고, 그것도 없으면 「확인 못 함」이라 밝히고 학습자에게 조문 링크를 직접 열게 한다.
+- G2 확인(2026-11-14): 권한 규칙 형식은 code.claude.com 권한 문서와 맞는다(G2 독립 리뷰가 확인). 세션 안 WebFetch로 law.go.kr을 열면 한글 주소(`/법령/<이름>`, `/행정규칙/<이름>`)로 법령명·시행일·공포 번호까지 보인다. 조문 본문은 자바스크립트로 불러와 보이지 않는다(`/제N조` 주소, `lsInfoP.do`도 같음). 공동활용 API(DRF)는 기관 등록이 필요해 학습자 경로에 쓸 수 없다. G3에서 조문 연결 주소(`/LSW/lsLinkCommonInfo.do?lsJoLnkSeq=…`)는 조문 본문이 보인다는 것을 관측했고, curl로 다시 확인했다. 그래서 튜터 규칙(tutor/sources.md)은 이렇게 정했다: 명칭·현행 여부는 law.go.kr로 확인한다. 조문 내용은 공식 해설 페이지에서 확인하고, 그것도 없으면 「확인 못 함」이라 밝히고 학습자에게 조문 링크를 직접 열게 한다.
 - 신뢰 대화상자의 기본 선택은 「No, exit」이다(go-develop G4 실측). README에 적는다.
 - 2026-11-14 실측(Claude Code 2.1.325, `claude -p --permission-mode dontAsk`): 신뢰를 수락하지 않은 폴더에서는 프로젝트 `permissions.allow`가 무시되고 「this workspace has not been trusted」 경고가 나온다. `--settings`로 같은 파일을 넘겨도 마찬가지다. G3는 README의 신뢰 수락과 같은 효과로 `~/.claude.json`의 해당 클론 경로에 `hasTrustDialogAccepted`를 켜고 끝나면 지운다. 수락한 뒤에는 `Edit(/learner/state.json)` 규칙으로 Write가 권한 창 없이 된다.
 
