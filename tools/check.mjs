@@ -20,7 +20,7 @@ const SECTOR = ["S1", "S2", "S3", "S4", "S9", "S10", "S12", "S13", "S14", "S15",
 const SECTOR_MODULES = ["P5", "G6", "X1"];
 const AREAS = ["F", "G", "A", "P", "O", "X"];
 // R11 공식 출처 도메인(spec.md R11). 새 기관을 쓰면 여기와 spec을 함께 고친다.
-const OFFICIAL = ["law.go.kr", "go.kr", "nia.or.kr", "nipa.kr", "fss.or.kr", "kisa.or.kr", "tta.or.kr", "swai.or.kr", "iso.org", "isaca.org", "opengroup.org", "peoplecert.org", "dama.org", "nist.gov", "europa.eu", "govinfo.gov", "gov.uk", "un.org", "acm.org", "finops.org"];
+const OFFICIAL = ["law.go.kr", "go.kr", "nia.or.kr", "nipa.kr", "fss.or.kr", "kisa.or.kr", "tta.or.kr", "swai.or.kr", "iso.org", "isaca.org", "opengroup.org", "peoplecert.org", "dama.org", "nist.gov", "europa.eu", "govinfo.gov", "gov.uk", "un.org", "acm.org", "aisnet.org", "finops.org"];
 
 function parseCurriculum(text) {
   const modules = new Map();
