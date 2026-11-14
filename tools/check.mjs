@@ -13,13 +13,14 @@ const read = (p) => readFileSync(join(root, p), "utf8").replace(/\r\n/g, "\n");
 
 const LEVELS = ["Explain", "Apply", "Evaluate", "Develop"];
 const FIELDS = ["선수", "핵심 질문", "목표", "만들어 볼 것", "국내 근거", "글로벌 비교"];
+const REQUIRED_ALLOW = ["Edit(/learner/state.json)", "Edit(/learner/log.md)", "Edit(/learner/studio/**/*.html)", "Edit(/learner/work/**/*.md)", "WebSearch", "WebFetch", "Bash(open learner/studio/*.html)", "Bash(xdg-open learner/studio/*.html)", "Bash(start \"\" learner/studio/*.html)", "PowerShell(Start-Process learner/studio/*.html)"];
 const NO_LAW = "국내 법령 직접 근거 없음";
 // 공공·금융 조직에만 의무인 국내 출처와, 그 조직 자체를 다루는 모듈(민간 표시 예외).
 const SECTOR = ["S1", "S2", "S3", "S4", "S9", "S10", "S12", "S13", "S14", "S15", "S16", "S21"];
 const SECTOR_MODULES = ["P5", "G6", "X1"];
 const AREAS = ["F", "G", "A", "P", "O", "X"];
 // R11 공식 출처 도메인(spec.md R11). 새 기관을 쓰면 여기와 spec을 함께 고친다.
-const OFFICIAL = ["law.go.kr", "go.kr", "nia.or.kr", "nipa.kr", "kisa.or.kr", "tta.or.kr", "swai.or.kr", "iso.org", "isaca.org", "opengroup.org", "peoplecert.org", "dama.org", "nist.gov", "europa.eu", "govinfo.gov", "gov.uk", "un.org", "acm.org", "finops.org"];
+const OFFICIAL = ["law.go.kr", "go.kr", "nia.or.kr", "nipa.kr", "fss.or.kr", "kisa.or.kr", "tta.or.kr", "swai.or.kr", "iso.org", "isaca.org", "opengroup.org", "peoplecert.org", "dama.org", "nist.gov", "europa.eu", "govinfo.gov", "gov.uk", "un.org", "acm.org", "finops.org"];
 
 function parseCurriculum(text) {
   const modules = new Map();
@@ -97,8 +98,8 @@ function parseCurriculum(text) {
 }
 
 function findVisualAssets(files) {
-  const allowedJs = /^tools\/.*\.m?js$/;
-  return files.filter((f) => /\.(html?|css|svg|png|jpe?g|gif|webp|avif)$/i.test(f) || (/\.m?js$/i.test(f) && !allowedJs.test(f)));
+  const allowedJs = /^tools\/[^/]*\.mjs$/;
+  return files.filter((f) => /\.(html?|css|svg|png|jpe?g|gif|webp|avif|ico|bmp|tiff?)$/i.test(f) || (/\.m?js$/i.test(f) && !allowedJs.test(f)));
 }
 
 function findTemplateMarkup(name, text) {
@@ -124,6 +125,8 @@ function main() {
   for (const s of readdirSync(join(root, ".claude/skills"))) {
     if (statSync(join(root, ".claude/skills", s)).isDirectory() && !existsSync(join(root, ".claude/skills", s, "SKILL.md"))) errors.push(`스킬 ${s}: SKILL.md 없음`);
   }
+  const allow = (() => { try { return JSON.parse(read(".claude/settings.json")).permissions?.allow || []; } catch { return []; } })();
+  for (const rule of REQUIRED_ALLOW) if (!allow.includes(rule)) errors.push(`settings.json allow에 필수 규칙 없음(R9): ${rule}`);
   if (!read(".gitignore").split("\n").includes("learner/")) errors.push(".gitignore에 learner/ 없음");
 
   if (errors.length) { console.error(errors.map((e) => `FAIL ${e}`).join("\n")); process.exit(1); }

@@ -20,10 +20,10 @@
 | 대상 | 공식 출처 |
 |---|---|
 | 법률·시행령·시행규칙 | 국가법령정보센터 law.go.kr |
-| 고시·훈령·지침(행정규칙) | law.go.kr 행정규칙, 또는 소관 부처 누리집 |
+| 고시·훈령·지침(행정규칙) | law.go.kr 행정규칙, 또는 소관 부처 누리집(*.go.kr, 금융위원회 fsc.go.kr, 금융감독원 fss.or.kr) |
 | 국가표준(KS) | 국가표준인증종합정보센터 standard.go.kr |
-| 공공 가이드 | 발간 기관 누리집(nia.or.kr, nipa.kr, swai.or.kr 등) |
-| 국제 표준 | iso.org, 기준 기관 누리집(isaca.org, opengroup.org, peoplecert.org, dama.org, nist.gov) |
+| 공공 가이드 | 발간 기관 누리집(nia.or.kr, nipa.kr, kisa.or.kr, tta.or.kr, swai.or.kr 등) |
+| 국제 표준·기준 | iso.org, 기준 기관 누리집(isaca.org, opengroup.org, peoplecert.org, dama.org, nist.gov, acm.org, finops.org) |
 | 외국 법령 | 원 공표처(eur-lex.europa.eu, govinfo.gov, legislation.gov.uk, uncitral.un.org) |
 
 읽는 법은 G2에서 실측한 아래 형식을 먼저 쓴다. 한 형식이 열리지 않으면 다음 형식으로 간다.

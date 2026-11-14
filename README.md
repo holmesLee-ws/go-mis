@@ -61,6 +61,7 @@ Code 탭에서 데스크탑의 `go-mis` 폴더를 선택합니다. Chat 탭이 �
 | [CLAUDE.md](CLAUDE.md), [tutor/](tutor/) | 튜터의 행동 규칙 |
 | `.claude/` | 명령과 권한 설정 |
 | `learner-template/` | 학습 기록의 빈 양식 |
+| `tools/`, `docs/` | 리포 관리자용 검사기와 구축 기록. 학습에는 필요 없습니다(node 불필요) |
 | `learner/` | 내 기록, 내 HTML, 내 산출물 초안. 처음 시작할 때 생깁니다 |
 
 `learner/`는 Git에서 제외되어 내 컴퓨터에만 남습니다. 그래서 `git pull`로 커리큘럼을 업데이트해도 기록이 충돌하지 않습니다. 컴퓨터를 옮길 때는 이 폴더를 직접 복사하세요.
